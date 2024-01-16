@@ -7,12 +7,12 @@
  * found in the LICENSE file at https://github.com/dalelotts/angular-bootstrap-datetimepicker/blob/master/LICENSE
  */
 
-import {Component, DebugElement, ViewChild} from '@angular/core';
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {FormsModule} from '@angular/forms';
-import {By} from '@angular/platform-browser';
+import { Component, DebugElement, ViewChild } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 import * as _moment from 'moment';
-import {DlDateTimeInputDirective, DlDateTimeInputModule, DlDateTimeStringModule} from '../../../public-api';
+import { DlDateTimeInputDirective, DlDateTimeInputModule, DlDateTimeStringModule } from '../../../public-api';
 
 @Component({
   template: `<input id="dateInput"
@@ -23,7 +23,7 @@ import {DlDateTimeInputDirective, DlDateTimeInputModule, DlDateTimeStringModule}
                     [(ngModel)]="dateValue"/>`
 })
 class ModelTypeComponent {
-  @ViewChild(DlDateTimeInputDirective, {static: false}) input: DlDateTimeInputDirective<number>;
+  @ViewChild(DlDateTimeInputDirective, { static: false }) input: DlDateTimeInputDirective<number>;
 }
 
 describe('DlDateTimeInputDirective modelType', () => {
@@ -38,8 +38,7 @@ describe('DlDateTimeInputDirective modelType', () => {
       declarations: [
         ModelTypeComponent,
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   describe('String', () => {

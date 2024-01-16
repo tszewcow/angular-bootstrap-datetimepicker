@@ -38,6 +38,7 @@ export const DL_DATE_TIME_INPUT_FORMATS_DEFAULT = [
   'M/D/YYYY h:m:s A',
   'M/D/YYYY h:m A',
   'M/D/YYYY h:m A',
+  'M/D/YYYY hh:mm A',
   'M/D/YYYY',
   'M/D/YY h:m:s A',
   'M/D/YY h:m A',

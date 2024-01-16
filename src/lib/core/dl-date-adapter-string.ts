@@ -1,4 +1,4 @@
-import {Inject} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import * as _moment from 'moment';
 import {DlDateAdapter} from './dl-date-adapter';
 import {DL_DATE_TIME_INPUT_FORMATS, DL_DATE_TIME_MODEL_FORMAT} from './dl-date-time-string-format';
@@ -22,6 +22,9 @@ const moment = _moment;
 /**
  * Adapts `string` to be usable as a date by date/time components that work with dates.
  **/
+@Injectable({
+  providedIn: 'root'
+})
 export class DlDateAdapterString extends DlDateAdapter<string> {
 
   private readonly inputFormats: string[];

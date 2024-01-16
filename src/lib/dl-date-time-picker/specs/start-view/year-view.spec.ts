@@ -184,7 +184,7 @@ describe('DlDateTimePickerComponent', () => {
         const expectedValue = expectedValues[index];
         expect(yearElement.attributes['dl-abdtp-value']).toBe(expectedValue.toString(10), index);
         expect(yearElement.attributes['role']).toBe('gridcell', index);
-        expect(yearElement.attributes['aria-label']).toBeNull(); // why isn't this undefined?
+        expect(yearElement.attributes['aria-label']).toBeUndefined();
       });
     });
 
