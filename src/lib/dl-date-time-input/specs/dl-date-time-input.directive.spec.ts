@@ -1,5 +1,5 @@
 import {Component, DebugElement, ViewChild} from '@angular/core';
-import {async, ComponentFixture, fakeAsync, flush, TestBed, tick} from '@angular/core/testing';
+import {ComponentFixture, fakeAsync, flush, TestBed, tick} from '@angular/core/testing';
 import {FormsModule, NgForm} from '@angular/forms';
 import {By} from '@angular/platform-browser';
 import * as _moment from 'moment';
@@ -13,7 +13,7 @@ import {OCT} from '../../dl-date-time-picker/specs/month-constants';
 
 let moment = _moment;
 if ('default' in _moment) {
-  moment = _moment['default'];
+  moment = _moment['default'] as typeof moment;
 }
 
 @Component({
@@ -31,8 +31,8 @@ class DateModelComponent {
 
 describe('DlDateTimeInputDirective', () => {
 
-  beforeEach(async(() => {
-    return TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         FormsModule,
         DlDateTimeNumberModule,
@@ -41,24 +41,23 @@ describe('DlDateTimeInputDirective', () => {
       declarations: [
         DateModelComponent,
       ]
-    })
-      .compileComponents();
-  }));
+    }).compileComponents();
+  });
 
   describe('numeric model', () => {
     let component: DateModelComponent;
     let fixture: ComponentFixture<DateModelComponent>;
     let debugElement: DebugElement;
 
-    beforeEach(async(() => {
+    beforeEach(async () => {
       fixture = TestBed.createComponent(DateModelComponent);
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         fixture.detectChanges();
         component = fixture.componentInstance;
         debugElement = fixture.debugElement;
       });
-    }));
+    });
 
     it('should be input as text and stored as a number', () => {
       const inputElement = debugElement.query(By.directive(DlDateTimeInputDirective)).nativeElement;

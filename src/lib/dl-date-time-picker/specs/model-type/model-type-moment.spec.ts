@@ -8,7 +8,7 @@
  */
 
 import {Component, ViewChild} from '@angular/core';
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 
 import * as _moment from 'moment';
@@ -39,8 +39,8 @@ class ModelTypeComponent {
 
 describe('DlDateTimePickerComponent modelType', () => {
 
-  beforeEach(async(() => {
-    return TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         DlDateTimeMomentModule,
         DlDateTimePickerModule,
@@ -48,22 +48,21 @@ describe('DlDateTimePickerComponent modelType', () => {
       declarations: [
         ModelTypeComponent,
       ]
-    })
-      .compileComponents();
-  }));
+    }).compileComponents();
+  });
 
   describe('moment Date', () => {
     let component: ModelTypeComponent;
     let fixture: ComponentFixture<ModelTypeComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(async () => {
       fixture = TestBed.createComponent(ModelTypeComponent);
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         fixture.detectChanges();
         component = fixture.componentInstance;
       });
-    }));
+    });
 
     it('should be Date type', () => {
       const nowElement = fixture.debugElement.query(By.css('.dl-abdtp-now'));

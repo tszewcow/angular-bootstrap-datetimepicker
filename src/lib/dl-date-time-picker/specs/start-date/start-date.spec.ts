@@ -8,7 +8,7 @@
  */
 
 import {Component, DebugElement, ViewChild} from '@angular/core';
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
 import {DlDateTimeNumberModule, DlDateTimePickerComponent, DlDateTimePickerModule} from '../../../public-api';
@@ -21,7 +21,7 @@ import * as _moment from 'moment';
 let moment = _moment;
 /* istanbul ignore if */
 if ('default' in _moment) {
-  moment = _moment['default'];
+  moment = _moment['default'] as typeof moment;
 }
 
 @Component({
@@ -44,8 +44,8 @@ class UndefinedStartDateComponent {
 
 describe('DlDateTimePickerComponent startDate', () => {
 
-  beforeEach(async(() => {
-    return TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         FormsModule,
         DlDateTimeNumberModule,
@@ -55,24 +55,23 @@ describe('DlDateTimePickerComponent startDate', () => {
         StartDateComponent,
         UndefinedStartDateComponent,
       ]
-    })
-      .compileComponents();
-  }));
+    }).compileComponents();
+  });
 
   describe('year', () => {
     let component: StartDateComponent;
     let fixture: ComponentFixture<StartDateComponent>;
     let debugElement: DebugElement;
 
-    beforeEach(async(() => {
+    beforeEach(async () => {
       fixture = TestBed.createComponent(StartDateComponent);
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         fixture.detectChanges();
         component = fixture.componentInstance;
         debugElement = fixture.debugElement;
       });
-    }));
+    });
 
     it('should start on the startDate', () => {
       expect(debugElement.query(By.css('.dl-abdtp-view-label')).nativeElement.textContent.trim()).toBe('Oct 1985');
@@ -90,15 +89,15 @@ describe('DlDateTimePickerComponent startDate', () => {
     let fixture: ComponentFixture<UndefinedStartDateComponent>;
     let debugElement: DebugElement;
 
-    beforeEach(async(() => {
+    beforeEach(async () => {
       fixture = TestBed.createComponent(UndefinedStartDateComponent);
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         fixture.detectChanges();
         component = fixture.componentInstance;
         debugElement = fixture.debugElement;
       });
-    }));
+    });
 
     it('should start the current date', () => {
       expect(debugElement.query(By.css('.dl-abdtp-view-label')).nativeElement.textContent.trim()).toBe(moment().format('MMM YYYY'));

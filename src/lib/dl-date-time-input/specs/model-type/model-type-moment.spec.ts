@@ -8,7 +8,7 @@
  */
 
 import {Component, DebugElement, ViewChild} from '@angular/core';
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import {By} from '@angular/platform-browser';
 import * as _moment from 'moment';
@@ -16,7 +16,7 @@ import {DlDateTimeInputDirective, DlDateTimeInputModule, DlDateTimeMomentModule}
 
 let moment = _moment;
 if ('default' in _moment) {
-  moment = _moment['default'];
+  moment = _moment['default'] as typeof moment;
 }
 
 @Component({
@@ -33,8 +33,8 @@ class ModelTypeComponent {
 
 describe('DlDateTimeInputDirective modelType', () => {
 
-  beforeEach(async(() => {
-    return TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         FormsModule,
         DlDateTimeMomentModule,
@@ -43,24 +43,23 @@ describe('DlDateTimeInputDirective modelType', () => {
       declarations: [
         ModelTypeComponent,
       ]
-    })
-      .compileComponents();
-  }));
+    }).compileComponents();
+  });
 
   describe('moment', () => {
     let component: ModelTypeComponent;
     let fixture: ComponentFixture<ModelTypeComponent>;
     let debugElement: DebugElement;
 
-    beforeEach(async(() => {
+    beforeEach(async () => {
       fixture = TestBed.createComponent(ModelTypeComponent);
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
+      await fixture.whenStable().then(() => {
         fixture.detectChanges();
         component = fixture.componentInstance;
         debugElement = fixture.debugElement;
       });
-    }));
+    });
 
     it('should be moment type', () => {
       const inputElement = debugElement.query(By.directive(DlDateTimeInputDirective)).nativeElement;
